@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <title>3D Carousel Asmaul Husna</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        /* for touch screen */
+        touch-action: none;
+      }
+
+
+      body {
+        overflow: hidden;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-image: url("Background/pemandangan.jpg") ;
+        background-size: 100%;
+
+        -webkit-perspective: 500px;
+        perspective:6000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+
+      #drag-container,
+      #spin-container {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: auto;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform: rotateX(-10deg);
+        transform: rotateX(-3deg);
+      }
+
+      #drag-container img,
+      #drag-container video {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        line-height: 100px;
+        font-size: 50px;
+        text-align: center;
+        -webkit-box-shadow: 0 0 8px #fff;
+        box-shadow: 0 0 8px #fff;
+        -webkit-box-reflect: below 10px
+          linear-gradient(transparent, transparent, #0005);
+      }
+
+      #drag-container img:hover,
+      #drag-container video:hover {
+        -webkit-box-shadow: 0 0 15px #fffd;
+        box-shadow: 0 0 15px #fffd;
+        -webkit-box-reflect: below 10px
+          linear-gradient(transparent, transparent, #0007);
+      }
+
+      #drag-container p {
+        font-family: Serif;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%) rotateX(90deg);
+        transform: translate(-50%, -50%) rotateX(90deg);
+        color: #FF0000;
+      }
+
+      #ground {
+        width: 1280px;
+        height: 720px;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%) rotateX(90deg);
+        transform: translate(-50%, -50%) rotateX(90deg);
+        background: -webkit-radial-gradient(
+          center center,
+          farthest-side,
+          #9993,
+          transparent
+        );
+      }
+
+      #music-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      
+
+      @-webkit-keyframes spin {
+        from {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+      }
+      @-webkit-keyframes spinRevert {
+        from {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+        to {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+      }
+      @keyframes spinRevert {
+        from {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+        to {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+      }
+    </style>
+  </head>
+
+
+  <body>
+
+    <div id="drag-container">
+      <div id="spin-container">
+        <!-- Add your images (or video) here -->
+       
+        <!-- Example image with link -->
+         <a target="_blank"
+          href="Home%20Page/0.%20Allah.html" >
+          <img src="Image/01%20Allah.png?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""/> </a>
+
+         <a target="_blank"
+          href="Home%20Page/1.%20Ar%20-%20Rahman.html" >
+          <img src="Image/02%20Ar%20Rahman.png" alt="" /> </a>
+
+         <a target="_blank"
+          href="Home%20Page/2.%20Ar%20%E2%80%93%20Rahiim.html">
+          <img src="Image/03%20Ar%20Rahim.png" alt=""/> </a>
+
+          <a target="_blank"
+          href="Home%20Page/3.%20Al%20%E2%80%93%20Malik.html">
+          <img src="Image/04%20Al%20Malik.png" alt=""/> </a>
+
+          <a target="_blank"
+          href="Home%20Page/4.%20Al%20%E2%80%93%20Quddus.html">
+          <img src="Image/05%20Al%20Kuddus.png" alt=""/> </a>
+
+          <a target="_blank"
+          href="Home%20Page/5.%20As%20%E2%80%93%20Salaam.html">
+          <img src="Image/06%20As%20Salam.png" alt=""/> </a>       
+
+          <a target="_blank"
+          href="Home%20Page/6.%20Al%20%E2%80%93%20Mu%E2%80%99min.html">
+          <img src="Image/07%20Al%20Mukmin.png" alt=""/> </a>   
+
+          <a target="_blank"
+          href="Home%20Page/7.%20Al%20%E2%80%93%20Muhaimin.html">
+          <img src="Image/08%20Al%20Muhaimin.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/8.%20Al%20%E2%80%93%20%E2%80%98Aziiz.html">
+          <img src="Image/09%20Al%20Azis.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/9.%20Al%20%E2%80%93%20Jabbar.html">
+          <img src="Image/10%20Al%20Jabbar.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/10.%20Al%20%E2%80%93%20Mutakabbir.html">
+          <img src="Image/11%20Al%20Mutakabbir.png" alt=""/> </a>
+
+
+          <a target="_blank"
+          href="Home%20Page/11.%20Al%20%E2%80%93%20Khaaliq.html">
+          <img src="Image/12%20Al%20Khaliq.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/12.%20Al%20%E2%80%93%20Baari%E2%80%99.html">
+          <img src="Image/13%20Al%20Bari.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/13.%20Al%20%E2%80%93%20Mushawwir.html">
+          <img src="Image/14%20Al%20Mushowwir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/14.%20Al%20%E2%80%93%20Ghaffaar.html">
+          <img src="Image/15%20Al%20Ghaffar.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/15.%20Al%20%E2%80%93%20Qahhaar.html">
+          <img src="Image/16%20Al%20Qahhar.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/16.%20Al%20%E2%80%93%20Wahhaab.html">
+          <img src="Image/17%20Al%20Wahhab.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/17.%20Ar%20%E2%80%93%20Razzaaq.html">
+          <img src="Image/18%20Al%20Razzaq.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/18.%20Al%20%E2%80%93%20Fattaah.html">
+          <img src="Image/19%20Al%20Fattah.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/19.%20Al%20%E2%80%93%20%E2%80%98Aliim.html">
+          <img src="Image/20%20Al%20Alim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/20.%20Al%20%E2%80%93%20Qaabidh.html">
+          <img src="Image/21%20Al%20Qabid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/21.%20Al%20%E2%80%93%20Baasith.html">
+          <img src="Image/22%20Al%20Basith.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/22.%20Al%20%E2%80%93%20Khaafidh.html">
+
+          <img src="Image/23%20Al%20Khafidz.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/23.%20Ar%20%E2%80%93%20Raafi%60.html">
+          <img src="Image/24%20Ar%20Rafi.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/24.%20Al%20%E2%80%93%20Mu%60izzu.html">
+          <img src="Image/25%20Al%20Muiz.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/25.%20Al%20%E2%80%93%20Mudzillu.html">
+          <img src="Image/26%20Al%20Mudzill.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/26.%20As%20%E2%80%93%20Samii%E2%80%99.html">
+          <img src="Image/27%20Al%20Sami'.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/27.%20Al%20%E2%80%93%20Bashiir.html">
+          <img src="Image/28%20Al%20Bashir.png" alt=""/> </a> 
+ 
+          <a target="_blank"
+          href="Home%20Page/28.%20Al%20%E2%80%93%20Hakam.html">
+          <img src="Image/29%20%20Al%20Hakam.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/29.%20Al%20%E2%80%93%20%E2%80%98Adl.html">
+          <img src="Image/30%20%20Al%20Adl.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/30.%20Al%20%E2%80%93%20Lathiif.html">
+          <img src="Image/31%20Al%20Lathif.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/31.%20Al%20%E2%80%93%20Khabiir.html">
+          <img src="Image/32%20%20Al%20Khabir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/32.%20Al%20%E2%80%93%20Haliim.html">
+          <img src="Image/33%20%20Al%20Halim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/33.%20Al%20%E2%80%93%20%E2%80%98Azhiim.html">
+          <img src="Image/34%20%20Al%20'Azhiim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/34.%20Al%20%E2%80%93%20Ghafuur.html">
+          <img src="Image/35%20Al%20Ghafur.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/35.%20Asy%20%E2%80%93%20Syakuur.html">
+          <img src="Image/36%20As%20Syakur.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/36.%20Al%20%E2%80%93%20%E2%80%98Aliiyy.html">
+          <img src="Image/37%20Al%20Aliyy.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/37.%20Al%20%E2%80%93%20Kabiir.html">
+          <img src="Image/38%20Al%20Kabir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/38.%20Al%20%E2%80%93%20Hafiizh.html">
+          <img src="Image/39%20%20Al%20Hafidz.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/39.%20Al%20%E2%80%93%20Muqiit.html">
+          <img src="Image/40%20Al%20Muqit.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/40.%20Al%20%E2%80%93%20Hasiib.html">
+          <img src="Image/41%20%20Al%20Hasib.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/41.%20Al%20%E2%80%93%20Jaliil.html">
+          <img src="Image/42%20%20Al%20Jalil.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/42.%20Al%20%E2%80%93%20Kariim.html">
+          <img src="Image/43%20%20Al%20Karim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/43.%20Ar%20%E2%80%93%20Raqiib.html">
+          <img src="Image/44%20Ar%20Rakib.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/44.%20Al%20%E2%80%93%20Mujiib.html">
+          <img src="Image/45%20%20Al%20Mujib.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/45.%20Al%20%E2%80%93%20Waasi%60.html">
+          <img src="Image/46%20%20Al%20Wasi.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/46.%20Al%20%E2%80%93%20Hakiim.html">
+          <img src="Image/47%20Al%20Hakim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/47.%20Al%20%E2%80%93%20Waduud.html">
+          <img src="Image/48%20%20Al%20Wadud.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/48.%20Al%20%E2%80%93%20Majiid.html">
+          <img src="Image/49%20%20Al%20Majid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/49.%20Al%20%E2%80%93%20Baa%E2%80%99its.html">
+          <img src="Image/50%20%20Al%20Baits.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/50.%20Asy%20%E2%80%93%20Syahiid.html">
+          <img src="Image/51%20As%20Syahid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/51.%20Al%20%E2%80%93%20Haqq.html">
+          <img src="Image/52%20%20Al%20Haq.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/52.%20Al-Wakiil.html">
+          <img src="Image/53%20%20Al%20Wakil.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/53.%20Al%20%E2%80%93%20Qawiyy.html">
+          <img src="Image/54%20%20Al%20Qawiyy.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/54.%20Al%20%E2%80%93%20Matiin.html">
+          <img src="Image/55%20%20Al%20Matiin.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/55.%20Al%20%E2%80%93%20Waliyy.html">
+          <img src="Image/56%20A%20Waliyy.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/56.%20Al%20%E2%80%93%20Hamiid.html">
+          <img src="Image/57%20Al%20Hamid.png" alt=""/> </a> 
+
+
+          <a target="_blank"
+          href="Home%20Page/57.%20Al%20%E2%80%93%20Muhshiy.html">
+          <img src="Image/58%20Al%20Muhsi.png" alt=""/> </a> 
+
+
+          <a target="_blank"
+          href="Home%20Page/58.%20Al%20%E2%80%93%20Mubdi%E2%80%99u.html">
+          <img src="Image/59%20Al%20Mubdi.png" alt=""/> </a> 
+
+
+          <a target="_blank"
+          href="Home%20Page/59.%20Al%20%E2%80%93%20Mu%60iid.html">
+          <img src="Image/60%20Al%20Muid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/60.%20Al%20%E2%80%93%20Muhyii.html">
+          <img src="Image/61%20Al%20Muhyi.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/61.%20Al%20%E2%80%93%20Mumiit.html">
+          <img src="Image/62%20Al%20Mumit.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/62.%20Al%20%E2%80%93%20Hayy.html">
+          <img src="Image/63%20Al%20Hayy.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/63.%20Al%20%E2%80%93%20Qayyuum.html">
+          <img src="Image/64%20Al%20Qayyum.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/64.%20Al%20%E2%80%93%20Waajid.html">
+          <img src="Image/65%20%20Al%20Wajid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/65.%20Al%20%E2%80%93%20Maajid.html">
+          <img src="Image/66%20Al%20Maajid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/66.%20Al%20%E2%80%93%20Waahid.html">
+          <img src="Image/67%20%20Al%20Wahid.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/67.%20Al%20%E2%80%93%20Ahad.html">
+          <img src="Image/68%20%20Al%20Ahad.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/68.%20Ash%20%E2%80%93%20Shamad.html">
+          <img src="Image/69%20%20As%20Shomad.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/69.%20Al%20%E2%80%93%20Qaadir.html">
+          <img src="Image/70%20%20Al%20Qadir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/70.%20Al%20%E2%80%93%20Muqtadir.html">
+          <img src="Image/71%20%20Al%20Muktadir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/71.%20Al%20%E2%80%93%20Muqaddim.html">
+          <img src="Image/72%20Al%20Muqaddim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/72.%20Al%20%E2%80%93%20Mu%E2%80%99akhkhir.html">
+          <img src="Image/73%20Al%20Muakhir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/73.%20Al%20%E2%80%93%20Awwal.html">
+          <img src="Image/74%20%20Al%20Awwal.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/74.%20Al%20%E2%80%93%20Aakhir.html">
+          <img src="Image/75%20%20Al%20Akhir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/75.%20Azh%20%E2%80%93%20Zhaahir.html">
+          <img src="Image/76%20Adz%20Zohir.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/76.%20Al%20%E2%80%93%20Baathin.html">
+          <img src="Image/77%20Al%20Bathin.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/77.%20Al%20%E2%80%93%20Waaliy.html">
+          <img src="Image/78%20%20Al%20Wali.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/78.%20Al%20%E2%80%93%20Muta%60aaliy.html">
+          <img src="Image/79%20Al%20Mutaali.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/79.%20Al%20%E2%80%93%20Barr.html">
+          <img src="Image/80%20Al%20Bari.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/80.%20At%20%E2%80%93%20Tawwaab.html">
+          <img src="Image/81%20At%20Tawwaab.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/81.%20Al%20%E2%80%93%20Muntaqim.html">
+          <img src="Image/82%20al%20Muntaqim.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/82.%20Al%20%E2%80%93%20%60Afuww.html">
+          <img src="Image/83%20%20Al%20Afuww.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/83.%20Ar%20%E2%80%93%20Ra%E2%80%99uuf.html">
+          <img src="Image/84%20Ar%20Rauf.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/84.%20Maalikul%20%E2%80%93%20Mulk.html">
+          <img src="Image/85%20Malikal%20mulk.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/85.%20Dzul%20%E2%80%93%20Jalaali%20Wal%20%E2%80%93%20Ikraam.html">
+          <img src="Image/86%20%20Dzul.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/86.%20Al%20%E2%80%93%20Muqsith.html">
+          <img src="Image/87%20Al%20Muqsith.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/87.%20Al%20%E2%80%93%20Jaami%60.html">
+          <img src="Image/88%20Al%20Jami.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/88.%20Al%20%E2%80%93%20Ghaniiyy.html">
+          <img src="Image/89%20%20Al%20Ghani.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/89.%20Al%20%E2%80%93%20Mughniiy.html">
+          <img src="Image/90%20%20Al%20Mugni.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/90.%20Al%20%E2%80%93%20Maani%60.html">
+          <img src="Image/91%20%20Al%20Mani.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/91.%20Al%20%E2%80%93%20Dhaarr.html">
+          <img src="Image/92%20Ad%20Daar.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/92.%20An%20%E2%80%93%20Naafi%60.html">
+          <img src="Image/93%20%20An%20Naafi.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/93.%20An%20%E2%80%93%20Nuur.html">
+          <img src="Image/94%20%20An%20Nur.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/94.%20Al%20%E2%80%93%20Haadii.html">
+          <img src="Image/95%20%20Al%20Hadi.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/95.%20Al%20%E2%80%93%20Badii%60.html">
+          <img src="Image/96%20%20Al%20Badi.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/96.%20Al%20%E2%80%93%20Baaqiiy.html">
+          <img src="Image/97%20%20al%20Baqi.png" alt=""/> </a> 
+
+         <a target="_blank"
+          href="Home%20Page/97.%20Al%20%E2%80%93%20Waarist.html">
+          <img src="Image/98%20%20Al%20Wariys.png" alt=""/> </a> 
+
+          <a target="_blank"
+          href="Home%20Page/98.%20Ar%20%E2%80%93%20Rasyiid.html">
+          <img src="Image/99%20Ar%20Rasyid.png" alt=""/> </a> 
+
+           <a target="_blank"
+          href="Home%20Page/99.%20Ash%20%E2%80%93%20Shabuur.html">
+          <img src="Image/100%20%20As%20Shobur.png" alt=""/> </a> 
+
+
+
+
+        <!-- Text at center of ground -->
+        <p>MENGENAL NAMA - NAMA ALLAH SWT</p>
+      </div>
+      <div id="ground"></div>
+    </div>
+
+    <div id="music-container"></div>
+    <script>
+     
+      // You can change global variables here:
+      var radius = 2000; // how big of the radius
+      var autoRotate = true; // auto rotate or not
+      var rotateSpeed = -90; // unit: seconds/360 degrees
+      var imgWidth = 120; // width of images (unit: px)
+      var imgHeight = 180; // height of images (unit: px)
+
+      // Link of background music - set 'null' if you dont want to play background music
+
+
+      var bgMusicURL = "Music/Murottal%20Asmaul%20Husna%20By%20Sami%20Yusuf.mp3" ;
+      var bgMusicControls = true; // Show UI music control
+
+      // add background music
+      if (bgMusicURL) {
+
+        document.getElementById("music-container").innerHTML += `
+      <audio src="${bgMusicURL }"
+                 ${ bgMusicControls ? "controls" : "" } autoplay loop>    
+
+      <p>If you are reading this, it is because your browser does not support the audio element.</p>
+      </audio>
+      `;
+      }
+
+      /*
+     NOTE:
+       + imgWidth, imgHeight will work for video
+       + if imgWidth, imgHeight too small, play/pause button in <video> will be hidden
+       + Music link are taken from: https://hoangtran0410.github.io/Visualyze-design-your-own-/?theme=HauMaster&playlist=1&song=1&background=28
+       + Custom from code in tiktok video  https://www.facebook.com/J2TEAM.ManhTuan/videos/1353367338135935/
+*/
+
+      // ===================== start =======================
+      setTimeout(init, 100);
+
+      var odrag = document.getElementById("drag-container");
+      var ospin = document.getElementById("spin-container");
+      var aImg = ospin.getElementsByTagName("img");
+      var aVid = ospin.getElementsByTagName("video");
+      var aEle = [...aImg, ...aVid]; // combine 2 arrays
+
+      // Size of images
+      ospin.style.width = imgWidth + "px";
+      ospin.style.height = imgHeight + "px";
+
+      // Size of ground - depend on radius
+      var ground = document.getElementById("ground");
+      ground.style.width = radius * 3 + "px";
+      ground.style.height = radius * 3 + "px";
+
+      function init(delayTime) {
+        for (var i = 0; i < aEle.length; i++) {
+          aEle[i].style.transform =
+            "rotateY(" +
+            i * (360 / aEle.length) +
+            "deg) translateZ(" +
+            radius +
+            "px)";
+          aEle[i].style.transition = "transform 1s";
+          aEle[i].style.transitionDelay =
+            delayTime || (aEle.length - i) / 4 + "s";
+        }
+      }
+
+      function applyTranform(obj) {
+        // Constrain the angle of camera (between 0 and 180)
+        if (tY > 180 ) tY = 180;
+        if (tY < 0) tY = 0;
+
+        // Apply the angle
+        obj.style.transform = "rotateX(" + -tY + "deg) rotateY(" + tX + "deg)";
+      }
+
+      function playSpin(yes) {
+        ospin.style.animationPlayState = yes ? "running" : "paused";
+      }
+
+      var sX,
+        sY,
+        nX,
+        nY,
+        desX = 0,
+        desY = 0,
+        tX = 0,
+        tY = 10;
+
+      // auto spin
+      if (autoRotate) { 
+        var animationName = rotateSpeed > 0 ? "spin" : "spinRevert";
+        ospin.style.animation = `${animationName} ${Math.abs(
+          rotateSpeed
+        )}s infinite linear`;
+      }
+
+      // setup events
+      document.onpointerdown = function(e) {
+        clearInterval(odrag.timer);
+        e = e || window.event;
+        var sX = e.clientX,
+          sY = e.clientY;
+
+        this.onpointermove = function(e) {
+          e = e || window.event;
+          var nX = e.clientX,
+            nY = e.clientY;
+          desX = nX - sX;
+          desY = nY - sY;
+          tX += desX * 0.1;
+          tY += desY * 0.1;
+          applyTranform(odrag);
+          sX = nX;
+          sY = nY;
+        };
+
+        this.onpointerup = function(e) {
+          odrag.timer = setInterval(function() {
+            desX *= 0.95;
+            desY *= 0.95;
+            tX += desX * 0.1;
+            tY += desY * 0.1;
+            applyTranform(odrag);
+            playSpin(false);
+            if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
+              clearInterval(odrag.timer);
+              playSpin(true);
+            }
+          }, 17);
+          this.onpointermove = this.onpointerup = null;
+        };
+
+        return false;
+      };
+
+      document.onmousewheel = function(e) {
+        e = e || window.event;
+        var d = e.wheelDelta / 20 || -e.detail;
+        radius += d;
+        init(1);
+      };
+    </script>
+  </body>
+</html>
